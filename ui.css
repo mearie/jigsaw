@@ -1,0 +1,450 @@
+body, pre {
+	font-family: Helvetica Neue, Arial, sans-serif;
+	font-weight: 300;
+	line-height: 1;
+}
+
+body {
+	user-select: none;
+	-moz-user-select: none;
+}
+
+strong {
+	font-weight: 600;
+}
+
+dialog {
+	display: none;
+	position: fixed;
+	left: 0;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	width: 100%;
+	height: 100%;
+	border: 0;
+	background-color: rgba(0, 0, 0, 0.5);
+	z-index: 20000;
+}
+
+dialog.shown {
+	display: block;
+}
+
+dialog>div.inner, dialog>noscript>div.inner {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	width: 40em;
+	max-height: 80%;
+	overflow: auto;
+	transform: translate(-50%, -50%);
+	padding: 1em;
+	background-color: white;
+	font-size: 80%;
+	line-height: 1.8;
+	user-select: text;
+	-moz-user-select: text;
+}
+
+@media (max-width: 45em) {
+	dialog>div.inner, dialog>noscript>div.inner {
+		left: 5vw;
+		right: 5vw;
+		width: 86vw;
+		padding: 1em 2vw;
+		transform: translate(0, -50%);
+	}
+}
+
+dialog>div.inner h1 {
+	margin: 0;
+	font-size: 180%;
+	font-weight: 400;
+}
+
+dialog>div.inner h2 {
+	margin: 0;
+	font-size: 140%;
+	font-weight: 400;
+}
+
+dialog>div.inner p {
+	margin: 1em 0;
+}
+
+dialog>div.inner a {
+	color: gray;
+	text-decoration: underline;
+}
+
+dialog>div.inner a.preview-image {
+	color: white;
+	text-decoration: none;
+}
+
+#first #first-touch {
+	display: none;
+}
+
+#first.touch #first-mouse {
+	display: none;
+}
+
+#first.touch #first-touch {
+	display: block;
+}
+
+#first div.inner {
+	text-align: center;
+	user-select: none;
+	-moz-user-select: none;
+}
+
+#first p {
+	display: inline-block;
+	text-align: left;
+	margin: 0.3em 0 -0.3em 0;
+	font-size: 24pt;
+	line-height: 3;
+}
+
+#first svg {
+	vertical-align: -0.8em;
+}
+
+@media (max-width: 45em) {
+	#first svg {
+		height: 30%;
+	}
+	#first p {
+		font-size: 18pt;
+	}
+}
+
+#first-noscript {
+	z-index: 99;
+	padding: 7em 0;
+}
+
+#first-noscript p {
+	line-height: 2;
+	text-align: center;
+}
+
+.preview-image {
+	display: block;
+	position: relative;
+	width: 180px;
+	height: 100px;
+	margin: 0;
+	color: white;
+	text-decoration: none;
+	cursor: pointer;
+	text-align: center;
+	font-size: 14px;
+	user-select: none;
+	-moz-user-select: none;
+}
+
+.preview-image>span.label {
+	display: block;
+	background-color: rgba(0, 0, 0, 0.5);
+	width: 100%;
+	padding: 41px 0 43px 0;
+	line-height: 1;
+	transition: background-color 0.5s ease;
+}
+
+.preview-image:hover>span.label, .preview-image:active>span.label {
+	background-color: rgba(0, 0, 0, 0.2);
+}
+
+.preview-image>span.progress {
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	width: 100%;
+	height: 5px;
+	background: silver;
+}
+
+#info .image-credit {
+	clear: both;
+}
+
+#info .image-credit .preview-image {
+	float: left;
+	margin: 0 0.5em 0.5em 0;
+}
+
+#info .image-credit p {
+	margin-left: 190px;
+}
+
+#jigsaw {
+	position: absolute;
+	top: 10px;
+	bottom: 20px;
+	left: 10px;
+	right: 40px;
+	border: 1px solid black;
+	margin-bottom: 1em;
+	overflow: hidden;
+	background-color: transparent;
+	transition: background-color 1s ease;
+}
+
+body.sidebar-open #jigsaw {
+	right: 200px;
+}
+
+#twinkle-star {
+	display: none;
+	opacity: 0;
+	transition: opacity 1s ease;
+}
+
+#jigsaw.completed {
+	background-color: black;
+}
+
+#jigsaw.completed [data-jigsaw-boundary], #jigsaw.completed [data-jigsaw-background] {
+	display: none;
+}
+
+#jigsaw.completed [data-jigsaw-group] {
+	animation: complete-glow 1s ease-in-out infinite alternate;
+	-webkit-animation: complete-glow 1s ease-in-out infinite alternate;
+}
+
+#jigsaw.completed [data-jigsaw-piece] > use {
+	stroke: rgba(0, 0, 0, 0.8);
+}
+
+@keyframes complete-glow {
+	0% {
+		filter: drop-shadow(0 0 15px gold);
+		-webkit-filter: drop-shadow(0 0 15px gold);
+	}
+	100% {
+		filter: drop-shadow(0 0 25px gold);
+		-webkit-filter: drop-shadow(0 0 25px gold);
+	}
+}
+
+/* inspired from http://www.script-tutorials.com/demos/360/ */
+#jigsaw.completed>#twinkle-star {
+	display: block;
+	position: absolute;
+	opacity: 1;
+	left: 0;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	width: 100%;
+	height: 100%;
+	pointer-events: none;
+	background: #000;
+	background-repeat: repeat;
+	background-position: top center;
+}
+
+#jigsaw.completed>#twinkle-star>#twinkle {
+	display: block;
+	position: absolute;
+	left: 0;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	width: 100%;
+	height: 100%;
+	pointer-events: none;
+	background: transparent url(twinkling.png) repeat top center;
+	-webkit-animation: complete-twinkle 200s linear infinite;
+	animation: complete-twinkle 200s linear infinite;
+}
+
+@keyframes complete-twinkle {
+	0% {
+		background-position: 0 0;
+	}
+	100% {
+		background-position: -10000px 5000px;
+	}
+}
+
+#log {
+	position: absolute;
+	bottom: 0;
+	left: 10px;
+	right: 40px;
+	line-height: 1;
+	height: 1em;
+	margin: 0;
+	padding: 0 0 10px 0;
+	overflow: hidden;
+}
+
+body.sidebar-open #log {
+	right: 200px;
+}
+
+aside {
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	bottom: 10px;
+	width: 20px;
+	overflow: hidden;
+	user-select: none;
+	-moz-user-select: none;
+}
+
+body.sidebar-open aside {
+	width: 180px;
+}
+
+aside>a {
+	display: block;
+	margin: 0 0 12px 0;
+	height: 20px;
+	overflow: hidden;
+	color: black;
+	text-decoration: none;
+	cursor: pointer;
+	font-size: 16px;
+}
+
+aside>a svg {
+	width: 20px;
+	height: 20px;
+	vertical-align: middle;
+}
+
+aside>a:hover, aside>a:active {
+	color: gray;
+}
+
+aside>a:hover svg, aside>a:active svg {
+	fill: gray;
+}
+
+aside>a#info-button {
+	position: absolute;
+	bottom: 0;
+	margin: 0;
+	padding: 10px 0 0 0;
+	width: 180px;
+	background: white;
+	z-index: 10000;
+}
+
+aside>hr {
+	height: 1px;
+	border: 0;
+	background-color: black;
+	margin: 12px -4px;
+}
+
+#images {
+	display: none;
+}
+
+body.sidebar-open #images.shown {
+	display: block;
+}
+
+#images>.preview-image {
+	margin: 0 0 10px 0;
+	height: 50px;
+}
+
+#images>.preview-image>span.label {
+	padding: 16px 0 18px 0;
+}
+
+#counter-wrapper {
+	height: 180px;
+	transition: height 0.5s linear;
+}
+
+body.sidebar-open #counter-wrapper {
+	height: 20px;
+	transition: height 0.5s linear;
+}
+
+#counter {
+	position: relative;
+	display: block;
+	white-space: nowrap;
+	width: 176px;
+	padding: 0 2px;
+	line-height: 1;
+	background-color: silver;
+	text-align: right;
+	transform: rotate(90deg);
+	transform-origin: 10px 10px;
+	-webkit-transform-origin: 10px 10px;
+	transition: transform 0.5s ease;
+}
+
+body.sidebar-open #counter {
+	transform: rotate(0deg);
+}
+
+#counter>span {
+	color: white;
+	font-size: 80%;
+	line-height: 20px;
+}
+
+#counter>span#remaining-counter {
+	float: left;
+}
+
+#timer {
+	position: relative;
+	display: block;
+	width: 176px;
+	padding: 0 2px;
+	line-height: 1;
+	transform: rotate(90deg);
+	transform-origin: 10px 10px;
+	-webkit-transform-origin: 10px 10px;
+	transition: transform 0.5s ease;
+	overflow: hidden;
+}
+
+body.sidebar-open #timer {
+	transform: rotate(0deg);
+}
+
+#timer>svg {
+	width: 20px;
+	height: 20px;
+	vertical-align: top;
+}
+
+#timer-text {
+	white-space: nowrap;
+	display: inline-block;
+	vertical-align: top;
+	line-height: 20px;
+	height: 20px;
+	margin-top: -2px;
+	transition: height 0.2s ease;
+}
+
+body.sidebar-open #timer-text {
+	height: 90px;
+}
+
+#timer-text p {
+	margin: 0 0 10px 0;
+}
+
+#timer-text small {
+	font-size: 80%;
+}
+

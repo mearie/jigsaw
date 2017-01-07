@@ -1,0 +1,72 @@
+[data-jigsaw] {
+}
+
+[data-jigsaw-board] {
+	/* https://stackoverflow.com/a/1745382/225272 */
+	position: relative;
+	user-select: none;
+	-moz-user-select: none;
+	width: 100%;
+	height: 100%;
+
+	/* will move a lot, make it a own composited layer */
+	will-change: transform;
+	transform: translate(50%, 50%);
+}
+
+[data-jigsaw-boundary] {
+	position: absolute;
+	/* enough up to 21x; border size = 50vw/vh * (maxInvZoom - 1) */
+	border-width: 1000vh 1000vw;
+	border-style: solid;
+	border-color: rgba(255, 0, 0, 0.2);
+	margin: -1000vh -1000vw;
+}
+
+[data-jigsaw-background] {
+	position: absolute;
+	left: 0;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	z-index: -1;
+}
+
+span[data-jigsaw-group] {
+	position: absolute;
+	filter: drop-shadow(3px 3px 0 rgba(0, 0, 0, 0.2));
+	-webkit-filter: drop-shadow(3px 3px 0 rgba(0, 0, 0, 0.2));
+	transition: filter 0.2s ease;
+
+	/* will move a lot, make it a own composited layer */
+	will-change: transform;
+	transform: translatez(0);
+}
+
+svg[data-jigsaw-piece] {
+	position: absolute;
+	pointer-events: none; /* <svg> is transparent to pointer events */
+}
+
+svg[data-jigsaw-piece] > image {
+	background-color: gray;
+	pointer-events: all;
+}
+
+svg[data-jigsaw-piece] > use {
+	stroke-width: 1px;
+	stroke: rgba(0, 0, 0, 0.2);
+	fill: transparent;
+	transition: stroke 0.2s ease;
+}
+
+span[data-jigsaw-group]:hover, span[data-jigsaw-group][data-jigsaw-group-moving] {
+	filter: drop-shadow(3px 3px 0 rgba(0, 0, 0, 0.6));
+	-webkit-filter: drop-shadow(3px 3px 0 rgba(0, 0, 0, 0.6));
+}
+
+span[data-jigsaw-group]:hover > svg[data-jigsaw-piece] > use,
+span[data-jigsaw-group][data-jigsaw-group-moving] > svg[data-jigsaw-piece] > use {
+	stroke: rgba(0, 0, 0, 0.8);
+}
+
