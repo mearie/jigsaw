@@ -209,29 +209,7 @@ body.sidebar-open #jigsaw {
 	background-color: black;
 }
 
-#jigsaw.completed [data-jigsaw-boundary], #jigsaw.completed [data-jigsaw-background] {
-	display: none;
-}
-
-#jigsaw.completed [data-jigsaw-group] {
-	animation: complete-glow 1s ease-in-out infinite alternate;
-	-webkit-animation: complete-glow 1s ease-in-out infinite alternate;
-}
-
-#jigsaw.completed [data-jigsaw-piece] > use {
-	stroke: rgba(0, 0, 0, 0.8);
-}
-
-@keyframes complete-glow {
-	0% {
-		filter: drop-shadow(0 0 15px gold);
-		-webkit-filter: drop-shadow(0 0 15px gold);
-	}
-	100% {
-		filter: drop-shadow(0 0 25px gold);
-		-webkit-filter: drop-shadow(0 0 25px gold);
-	}
-}
+/* Glow and completion effects are rendered via WebGL */
 
 /* inspired from http://www.script-tutorials.com/demos/360/ */
 #jigsaw.completed>#twinkle-star {
